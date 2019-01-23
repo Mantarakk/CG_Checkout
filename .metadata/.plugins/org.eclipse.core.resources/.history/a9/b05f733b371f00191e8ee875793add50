@@ -1,0 +1,17 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ItemFinderTest {
+
+	@Test
+	public void testGetItems() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetItem() {
+		fail("Not yet implemented");
+	}
+
+}

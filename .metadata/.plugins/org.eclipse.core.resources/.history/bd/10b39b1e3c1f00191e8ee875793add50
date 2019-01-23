@@ -1,0 +1,78 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Checkout {
+
+	private PriceFinder priceFinder;
+	private ItemFinder itemFinder;
+	private HashMap<Item, Integer> checkoutItems;
+	private BigDecimal total;
+	
+	public Checkout(ArrayList<String> scannedItems) {
+		this.priceFinder = PriceFinder.getInstance();
+		this.itemFinder = ItemFinder.getInstance();
+		this.checkoutItems = this.tallyItems(scannedItems);
+		this.total = this.caluclateTotal(this.checkoutItems);
+	}
+	
+	public HashMap<Item, Integer> tallyItems(ArrayList<String> list) {
+		
+		HashMap<Item, Integer> checkoutItems = new HashMap<Item, Integer>();
+
+		for(String itemName : list) {
+		
+			if(itemName.equals("q")) {
+				break;
+			}
+			
+			if(itemFinder.getItems().containsKey(itemName)) {
+				Item item = itemFinder.getItem(itemName);
+				if(!checkoutItems.containsKey(item)) {
+					checkoutItems.put(item, 1);
+				} else {
+					checkoutItems.replace(item, checkoutItems.get(item) + 1);
+				}
+			}
+		}
+		
+		return checkoutItems;
+	}
+	
+	public BigDecimal caluclateTotal(HashMap<Item, Integer> items) {
+		
+		BigDecimal total = new BigDecimal(0);
+		
+		for(Item checkoutItem : checkoutItems.keySet()) {
+			BigDecimal totalItemPrice = new BigDecimal(checkoutItems.get(checkoutItem)).multiply(priceFinder.getPrice(checkoutItem)).setScale(2, RoundingMode.HALF_UP);
+			total = total.add(totalItemPrice);
+		}
+		
+		return total;
+	}
+	
+	public void outputTotal() {
+		System.out.println(this.total.toString());
+	}
+
+	public PriceFinder getPriceFinder() {
+		return priceFinder;
+	}
+
+	public ItemFinder getItemFinder() {
+		return itemFinder;
+	}
+
+	public HashMap<Item, Integer> getCheckoutItems() {
+		return checkoutItems;
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+	
+	
+	
+}

@@ -1,0 +1,14 @@
+
+public enum Item {
+	
+	APPLE, 
+	ORANGE;
+	
+	private String name;
+	private double price;
+	
+	Item(String name) {
+		
+	}
+
+}

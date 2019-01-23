@@ -1,0 +1,42 @@
+import java.math.BigDecimal;
+import java.util.HashMap;
+
+/***
+ * A singleton class for finding the Price of a given item.
+ * @author Joseph Whitten.
+ *
+ */
+public class PriceFinder {
+	
+    private static PriceFinder singletonInstance = null; 
+
+    //The mapping.
+    private HashMap<Item, BigDecimal> prices = new HashMap<Item, BigDecimal>(); 
+    
+    private final BigDecimal APPLE_PRICE = new BigDecimal(0.6); 
+    private final BigDecimal ORANGE_PRICE = new BigDecimal(0.25); 
+    
+    private PriceFinder() 
+    { 
+        prices.put(Item.APPLE, APPLE_PRICE);
+        prices.put(Item.ORANGE, ORANGE_PRICE);
+    } 
+  
+    // static method to create instance of Singleton class 
+    public static PriceFinder getInstance() 
+    { 
+        if (singletonInstance == null) 
+        	singletonInstance = new PriceFinder(); 
+  
+        return singletonInstance; 
+    }
+
+	public HashMap<Item, BigDecimal> getPrices() {
+		return prices;
+	}
+	
+	public BigDecimal getPrice(Item item){
+		return prices.get(item);
+	}
+
+}

@@ -1,0 +1,13 @@
+
+public enum Item {
+	
+	APPLE("apple"), 
+	ORANGE("orange");
+	
+	private String name;
+	
+	Item(String name) {
+		this.name = name;
+	}
+
+}

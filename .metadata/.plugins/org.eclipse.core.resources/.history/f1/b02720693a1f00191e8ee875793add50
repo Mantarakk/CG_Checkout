@@ -1,0 +1,83 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Checkout {
+
+	private HashMap<Item, Integer> checkoutItems;
+	
+	private PriceFinder priceFinder = PriceFinder.getInstance();
+	private ItemFinder itemFinder = ItemFinder.getInstance();
+	
+	private BigDecimal total = new BigDecimal(0);
+	
+	public Checkout(ArrayList<String> scannedItems) {
+		checkoutItems = tallyItems(scannedItems);
+	}
+	
+	public HashMap<Item, Integer> tallyItems(ArrayList<String> list) {
+		
+		HashMap<Item, Integer> checkoutItems = new HashMap<Item, Integer>();
+
+		for(String itemName : list) {
+		
+			if(itemName.equals("q")) {
+				break;
+			}
+			
+			if(itemFinder.getItems().containsKey(itemName)) {
+				Item item = itemFinder.getItem(itemName);
+				if(!checkoutItems.containsKey(item)) {
+					checkoutItems.put(item, 1);
+				} else {
+					checkoutItems.replace(item, checkoutItems.get(item) + 1);
+				}
+			}
+		}
+		
+		return checkoutItems;
+	}
+	
+	public static void main(String[] args) {
+		
+		System.out.println("---- Checkout -----------------------------");
+		System.out.println("---- Enter items followed by q to teminate:");
+
+		Scanner inputScanner = new Scanner(System.in);
+		
+		while(inputScanner.hasNext()) {
+			
+			String itemName = inputScanner.next().toLowerCase();
+			
+			if(itemName.equals("q")) {
+				break;
+			}
+			
+			if(itemFinder.getItems().containsKey(itemName)) {
+				Item item = itemFinder.getItem(itemName);
+				if(!checkoutItems.containsKey(item)) {
+					checkoutItems.put(item, 1);
+				} else {
+					checkoutItems.replace(item, checkoutItems.get(item) + 1);
+				}
+			}
+			
+		}
+		
+		inputScanner.close();
+		
+		for(Item checkoutItem : checkoutItems.keySet()) {
+			BigDecimal totalItemPrice = new BigDecimal(checkoutItems.get(checkoutItem)).multiply(priceFinder.getPrice(checkoutItem)).setScale(2, RoundingMode.HALF_UP);
+			total = total.add(totalItemPrice);
+		}
+		
+		System.out.println(total.toString());
+		
+
+	}
+	
+	
+
+}

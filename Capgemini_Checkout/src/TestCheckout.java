@@ -1,0 +1,112 @@
+import static org.junit.Assert.*;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+
+import org.junit.Test;
+
+/***
+ * Test the checkout correctly tallys items, calculates correct prices and handles unknowns.
+ * @author Joseph Whitten
+ *
+ */
+public class TestCheckout {
+	
+	private final Integer THREE = new Integer(3);
+	private final Integer TWO = new Integer(2);
+	
+	private final String APPLE_NAME = "apple";
+	private final String ORANGE_NAME = "orange";
+	private final String UNKNOWN_NAME = "-------";
+	
+	private final BigDecimal TOTAL_TEST_ONE = new BigDecimal(1.80).setScale(2, RoundingMode.HALF_UP);
+	private final BigDecimal TOTAL_TEST_TWO = new BigDecimal(2.05).setScale(2, RoundingMode.HALF_UP);
+
+	@Test
+	/***
+	 * Checkout correctly tally apples.
+	 */
+	public void testTallyItemsApple() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		Checkout checkout = new Checkout(items);
+		assertEquals(checkout.getCheckoutItems().get(Item.APPLE), THREE);
+	}
+	
+	/***
+	 * Checkout correctly tallys oranges.
+	 */
+	@Test
+	public void testTallyItemsOrange() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(ORANGE_NAME);
+		items.add(ORANGE_NAME);
+		Checkout checkout = new Checkout(items);
+		assertEquals(checkout.getCheckoutItems().get(Item.ORANGE), TWO);
+	}
+	
+	
+	/***
+	 * Checkout dismisses unknown values.
+	 */
+	@Test
+	public void testTallyItemsUnkownString() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(APPLE_NAME);
+		items.add(ORANGE_NAME);
+		items.add(UNKNOWN_NAME);
+		Checkout checkout = new Checkout(items);
+		assertEquals(checkout.getCheckoutItems().size(), TWO.intValue());
+	}
+
+	/***
+	 * Checkout correctly determines price of 3 apples.
+	 */
+	@Test
+	public void testCaluclateTotalThreeApple() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		Checkout checkout = new Checkout(items);
+		System.out.println(checkout.getTotal().toString());
+		System.out.println(TOTAL_TEST_ONE.toString());
+		assertTrue(checkout.getTotal().equals(TOTAL_TEST_ONE));
+	}
+	
+	/***
+	 * Checkout correctly determines price of 3 apples and 1 orange.
+	 */
+	@Test
+	public void testCaluclateTotalThreeAppleOneOrange() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(ORANGE_NAME);
+		Checkout checkout = new Checkout(items);
+		assertTrue(checkout.getTotal().equals(TOTAL_TEST_TWO));
+	}
+	
+	/***
+	 * Checkout total not effected by unknowns.
+	 */
+	@Test
+	public void testCaluclateTotalThreeAppleOneOrangeOneUnknown() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(ORANGE_NAME);
+		items.add(UNKNOWN_NAME);
+		Checkout checkout = new Checkout(items);
+		assertTrue(checkout.getTotal().equals(TOTAL_TEST_TWO));
+	}
+
+}

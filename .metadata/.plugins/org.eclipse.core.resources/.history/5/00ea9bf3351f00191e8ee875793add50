@@ -1,0 +1,59 @@
+import static org.junit.Assert.*;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import org.junit.Test;
+import static org.hamcrest.CoreMatchers.instanceOf;
+
+public class TestPriceFinder {
+
+	private final int HASHMAP_SIZE = 2;
+	private final BigDecimal APPLE_PRICE = new BigDecimal(0.6);
+	private final BigDecimal ORANGE_PRICE = new BigDecimal(0.25);
+	
+	/**
+	 * We return the hashmap.
+	 */
+	@Test
+	public void testGetPrices() {
+		PriceFinder pf = PriceFinder.getInstance();		
+		assertThat(pf.getPrices(), instanceOf(HashMap.class));
+	}
+	
+	/***
+	 * We have only 2 items.
+	 */
+	@Test
+	public void testGetPricesSizeTwo() {
+		PriceFinder pf = PriceFinder.getInstance();		
+		assertEquals(pf.getPrices().size(), HASHMAP_SIZE);
+	}
+	
+	/***
+	 * We have the apple price.
+	 */
+	@Test
+	public void testGetPriceApple() {
+		PriceFinder pf = PriceFinder.getInstance();		
+		assertEquals(pf.getPrice(Item.APPLE), APPLE_PRICE);
+	}
+	
+	/***
+	 * We have the apple price.
+	 */
+	@Test
+	public void testGetPriceOrange() {
+		PriceFinder pf = PriceFinder.getInstance();		
+		assertEquals(pf.getPrice(Item.ORANGE), ORANGE_PRICE);
+	}
+
+	/**
+	 * We return a big decimal.
+	 */
+	@Test
+	public void testGetPrice() {
+		PriceFinder pf = PriceFinder.getInstance();		
+		assertThat(pf.getPrice(Item.APPLE), instanceOf(BigDecimal.class));
+	}
+
+}

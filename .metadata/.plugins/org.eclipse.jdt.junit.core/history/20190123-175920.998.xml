@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestPriceFinder" project="Capgemini_Checkout" tests="6" started="6" failures="0" errors="0" ignored="0">
+  <testsuite name="TestPriceFinder" time="0.003">
+    <testcase name="testGetPrice" classname="TestPriceFinder" time="0.001"/>
+    <testcase name="testApple" classname="TestPriceFinder" time="0.0"/>
+    <testcase name="testGetPricesSizeTwo" classname="TestPriceFinder" time="0.001"/>
+    <testcase name="testGetPriceOrange" classname="TestPriceFinder" time="0.0"/>
+    <testcase name="testGetPriceApple" classname="TestPriceFinder" time="0.0"/>
+    <testcase name="testOrange" classname="TestPriceFinder" time="0.001"/>
+  </testsuite>
+</testrun>

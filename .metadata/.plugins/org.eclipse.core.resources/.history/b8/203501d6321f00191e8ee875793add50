@@ -1,0 +1,35 @@
+import java.util.HashMap;
+
+public class PriceFinder {
+	
+    private static PriceFinder singletonInstance = null; 
+
+    private HashMap<Item, Double> prices = new HashMap<Item, Double>(); 
+    
+    private final double APPLE_PRICE = 0.6; 
+    private final double ORANGE_PRICE = 0.25; 
+    
+    private PriceFinder() 
+    { 
+        prices.put(Item.APPLE, APPLE_PRICE);
+        prices.put(Item.ORANGE, ORANGE_PRICE);
+    } 
+  
+    // static method to create instance of Singleton class 
+    public static PriceFinder getInstance() 
+    { 
+        if (singletonInstance == null) 
+        	singletonInstance = new PriceFinder(); 
+  
+        return singletonInstance; 
+    }
+
+	public HashMap<Item, Double> getPrices() {
+		return prices;
+	}
+	
+	public Double getPrice(Item item){
+		return prices.get(item);
+	}
+
+}

@@ -1,0 +1,60 @@
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.*;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+
+import org.junit.Test;
+
+public class ItemFinderTest {
+
+	private final int HASHMAP_SIZE = 2;
+	private final String APPLE_NAME = "apple";
+	private final String ORANGE_NAME = "orange";
+	
+	/**
+	 * We return the hashmap.
+	 */
+	@Test
+	public void testGetItems() {
+		ItemFinder itemFinder = ItemFinder.getInstance();		
+		assertThat(itemFinder.getItems(), instanceOf(HashMap.class));
+	}
+	
+	/***
+	 * We have only 2 items.
+	 */
+	@Test
+	public void testGetItemsSizeTwo() {
+		ItemFinder itemFinder = ItemFinder.getInstance();		
+		assertEquals(itemFinder.getItems().size(), HASHMAP_SIZE);
+	}
+	
+	/**
+	 * We return a string.
+	 */
+	@Test
+	public void testGetItem() {
+		ItemFinder itemFinder = ItemFinder.getInstance();		
+		assertThat(itemFinder.getItem(APPLE_NAME), instanceOf(String.class));
+	}
+	
+	/***
+	 * We have the apple price.
+	 */
+	@Test
+	public void testGetItemApple() {
+		ItemFinder itemFinder = ItemFinder.getInstance();		
+		assertEquals(itemFinder.getItem(APPLE_NAME), Item.APPLE);
+	}
+	
+	/***
+	 * We have the apple price.
+	 */
+	@Test
+	public void testGetItemOrange() {
+		ItemFinder itemFinder = ItemFinder.getInstance();		
+		assertEquals(itemFinder.getItem(ORANGE_NAME), Item.ORANGE);
+	}
+
+}

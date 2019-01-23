@@ -1,0 +1,24 @@
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import org.junit.Test;
+
+public class TestCheckout {
+
+	@Test
+	public void testTallyIems() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add("apple");
+		items.add("apple");
+		items.add("apple");
+		Checkout checkout = new Checkout(items);
+		assertEquals(checkout.getCheckoutItems().get(Item.APPLE), 3);
+	}
+
+	@Test
+	public void testCaluclateTotal() {
+		fail("Not yet implemented");
+	}
+
+}

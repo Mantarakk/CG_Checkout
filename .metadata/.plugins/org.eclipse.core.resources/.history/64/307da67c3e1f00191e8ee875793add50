@@ -1,0 +1,53 @@
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import org.junit.Test;
+
+public class TestCheckout {
+	
+	private final Integer THREE = new Integer(3);
+	private final Integer TWO = new Integer(2);
+	
+	private final String APPLE_NAME = "apple";
+	private final String ORANGE_NAME = "orange";
+	private final String UNKNOWN_NAME = "-------";
+
+	@Test
+	public void testTallyItemsApple() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		Checkout checkout = new Checkout(items);
+		assertEquals(checkout.getCheckoutItems().get(Item.APPLE), THREE);
+	}
+	
+	@Test
+	public void testTallyItemsOrange() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(APPLE_NAME);
+		items.add(ORANGE_NAME);
+		items.add(ORANGE_NAME);
+		Checkout checkout = new Checkout(items);
+		assertEquals(checkout.getCheckoutItems().get(Item.ORANGE), TWO);
+	}
+	
+	@Test
+	public void testTallyItemsUnkownString() {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(APPLE_NAME);
+		items.add(ORANGE_NAME);
+		items.add(UNKNOWN_NAME);
+		Checkout checkout = new Checkout(items);
+		assertEquals(checkout.getCheckoutItems().size(), TWO.intValue());
+	}
+
+	@Test
+	public void testCaluclateTotal() {
+		fail("Not yet implemented");
+	}
+
+}

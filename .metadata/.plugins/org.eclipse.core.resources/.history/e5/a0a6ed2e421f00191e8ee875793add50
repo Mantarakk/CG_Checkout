@@ -1,0 +1,41 @@
+import java.util.HashMap;
+
+/***
+ * A singleton class for finding the Item of a corresponding item name.
+ * @author Joe
+ *
+ */
+public class ItemFinder {
+	
+	private static ItemFinder singletonInstance = null; 
+
+	//The mapping
+    private HashMap<String, Item> items = new HashMap<String, Item>(); 
+    
+    private final String APPLE_NAME = "apple"; 
+    private final String ORANGE_NAME = "orange"; 
+    
+    private ItemFinder() 
+    { 
+        items.put(APPLE_NAME, Item.APPLE);
+        items.put(ORANGE_NAME, Item.ORANGE);
+    } 
+  
+    // static method to create instance of Singleton class 
+    public static ItemFinder getInstance() 
+    { 
+        if (singletonInstance == null) 
+        	singletonInstance = new ItemFinder(); 
+  
+        return singletonInstance; 
+    }
+
+	public HashMap<String, Item> getItems() {
+		return items;
+	}
+	
+	public Item getItem(String name){
+		return items.get(name);
+	}
+
+}

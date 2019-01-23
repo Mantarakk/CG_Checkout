@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Checkout {
+
+	private static HashMap<Item, Integer> checkoutItems = new HashMap<Item, Integer>();
+	private static PriceFinder priceFinder = PriceFinder.getInstance();
+	private static ItemFinder itemFinder = ItemFinder.getInstance();
+	private static double total = 0;
+	
+	public static void main(String[] args) {
+		
+		System.out.println("---- Checkout -----------------------------");
+		System.out.println("---- Enter items followed by q to teminate:");
+
+		Scanner inputScanner = new Scanner(System.in);
+		
+		while(inputScanner.hasNext()) {
+			String item = inputScanner.next().toLowerCase();
+			if(item.equals("q")) {
+				break;
+			}
+			if(itemFinder.getItems().containsKey(item)) {
+				
+			}
+			//System.out.println(item);
+		}
+		
+		inputScanner.close();
+		
+		for(String s : inputStrings) {
+			if(s.toLowerCase().equals("apple")){
+				total += 0.6;
+			} else if (s.toLowerCase().equals("orange")) {
+				total += 0.25;
+			}
+		}
+		
+		System.out.println(Double.toString(total));
+		
+
+	}
+
+}
