@@ -41,6 +41,10 @@ public class Checkout {
 
 		for(String itemName : list) {
 		
+			if(itemName.equals("q")) {
+				break;
+			}
+			
 			if(itemFinder.getItems().containsKey(itemName)) {
 				Item item = itemFinder.getItem(itemName);
 				if(!checkoutItems.containsKey(item)) {
