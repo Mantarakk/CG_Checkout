@@ -85,24 +85,22 @@ public class Checkout {
 	}
 	
 	public BigDecimal applyAppleOffer(HashMap<Item, Integer> items) {
-		BigDecimal discount = new BigDecimal(0);
 		if(items.containsKey(Item.APPLE)) {
+			BigDecimal discount = new BigDecimal(0);
 			int discountedApples = items.get(Item.APPLE) / 2;
-			discount = new BigDecimal(discountedApples).multiply(priceFinder.getPrice(Item.APPLE)).setScale(2, RoundingMode.HALF_UP);
-			return discount;
+			return new BigDecimal(discountedApples).multiply(priceFinder.getPrice(Item.APPLE)).setScale(2, RoundingMode.HALF_UP);
 		} else {
-			return discount;
+			return new BigDecimal(0);
 		}
 	}
 	
 	public BigDecimal applyOrangeOffer(HashMap<Item, Integer> items) {
-		BigDecimal discount = new BigDecimal(0);
 		if(items.containsKey(Item.ORANGE)) {
+			BigDecimal discount = new BigDecimal(0);
 			int discountedOranges = items.get(Item.ORANGE) / 3;
-			discount = new BigDecimal(discountedOranges).multiply(priceFinder.getPrice(Item.ORANGE)).setScale(2, RoundingMode.HALF_UP);
-			return discount;
+			return new BigDecimal(discountedOranges).multiply(priceFinder.getPrice(Item.APPLE)).setScale(2, RoundingMode.HALF_UP);
 		} else {
-			return discount;
+			return new BigDecimal(0);
 		}
 	}
 	

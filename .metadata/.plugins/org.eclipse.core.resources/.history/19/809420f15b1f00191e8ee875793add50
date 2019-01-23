@@ -76,6 +76,8 @@ public class TestCheckout {
 		items.add(APPLE_NAME);
 		items.add(APPLE_NAME);
 		Checkout checkout = new Checkout(items);
+		System.out.println(checkout.getTotal().toString());
+		System.out.println(TOTAL_TEST_ONE.toString());
 		assertTrue(checkout.getTotal().equals(TOTAL_TEST_ONE));
 	}
 	
@@ -90,6 +92,8 @@ public class TestCheckout {
 		items.add(APPLE_NAME);
 		items.add(ORANGE_NAME);
 		Checkout checkout = new Checkout(items);
+		System.out.println(checkout.getTotal().toString());
+		System.out.println(TOTAL_TEST_TWO.toString());
 		assertTrue(checkout.getTotal().equals(TOTAL_TEST_TWO));
 	}
 	
@@ -106,6 +110,8 @@ public class TestCheckout {
 		items.add(ORANGE_NAME);
 		items.add(ORANGE_NAME);
 		Checkout checkout = new Checkout(items);
+		System.out.println(checkout.getTotal().toString());
+		System.out.println(TOTAL_TEST_THREE.toString());
 		assertTrue(checkout.getTotal().equals(TOTAL_TEST_THREE));
 	}
 	

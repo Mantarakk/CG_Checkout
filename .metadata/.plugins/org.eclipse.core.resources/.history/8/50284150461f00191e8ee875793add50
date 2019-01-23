@@ -73,37 +73,7 @@ public class Checkout {
 			total = total.add(totalItemPrice);
 		}
 		
-		BigDecimal discounts = applyDiscounts(items);
-		
-		return total.subtract(discounts).setScale(2, RoundingMode.HALF_UP);
-	}
-	
-	public BigDecimal applyDiscounts(HashMap<Item, Integer> items) {
-		BigDecimal appleDiscount = applyAppleOffer(items);
-		BigDecimal orangeDiscount = applyOrangeOffer(items);
-		return appleDiscount.add(orangeDiscount);
-	}
-	
-	public BigDecimal applyAppleOffer(HashMap<Item, Integer> items) {
-		BigDecimal discount = new BigDecimal(0);
-		if(items.containsKey(Item.APPLE)) {
-			int discountedApples = items.get(Item.APPLE) / 2;
-			discount = new BigDecimal(discountedApples).multiply(priceFinder.getPrice(Item.APPLE)).setScale(2, RoundingMode.HALF_UP);
-			return discount;
-		} else {
-			return discount;
-		}
-	}
-	
-	public BigDecimal applyOrangeOffer(HashMap<Item, Integer> items) {
-		BigDecimal discount = new BigDecimal(0);
-		if(items.containsKey(Item.ORANGE)) {
-			int discountedOranges = items.get(Item.ORANGE) / 3;
-			discount = new BigDecimal(discountedOranges).multiply(priceFinder.getPrice(Item.ORANGE)).setScale(2, RoundingMode.HALF_UP);
-			return discount;
-		} else {
-			return discount;
-		}
+		return total;
 	}
 	
 	/***

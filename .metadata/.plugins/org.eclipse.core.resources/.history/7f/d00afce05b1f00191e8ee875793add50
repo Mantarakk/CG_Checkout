@@ -99,7 +99,8 @@ public class Checkout {
 		BigDecimal discount = new BigDecimal(0);
 		if(items.containsKey(Item.ORANGE)) {
 			int discountedOranges = items.get(Item.ORANGE) / 3;
-			discount = new BigDecimal(discountedOranges).multiply(priceFinder.getPrice(Item.ORANGE)).setScale(2, RoundingMode.HALF_UP);
+			discount = new BigDecimal(discountedOranges).multiply(priceFinder.getPrice(Item.APPLE)).setScale(2, RoundingMode.HALF_UP);
+			System.out.println(discount);
 			return discount;
 		} else {
 			return discount;

@@ -20,9 +20,8 @@ public class TestCheckout {
 	private final String ORANGE_NAME = "orange";
 	private final String UNKNOWN_NAME = "-------";
 	
-	private final BigDecimal TOTAL_TEST_ONE = new BigDecimal(1.20).setScale(2, RoundingMode.HALF_UP);
-	private final BigDecimal TOTAL_TEST_TWO = new BigDecimal(1.45).setScale(2, RoundingMode.HALF_UP);
-	private final BigDecimal TOTAL_TEST_THREE = new BigDecimal(2.30).setScale(2, RoundingMode.HALF_UP);
+	private final BigDecimal TOTAL_TEST_ONE = new BigDecimal(1.80).setScale(2, RoundingMode.HALF_UP);
+	private final BigDecimal TOTAL_TEST_TWO = new BigDecimal(2.05).setScale(2, RoundingMode.HALF_UP);
 
 	@Test
 	/***
@@ -76,6 +75,8 @@ public class TestCheckout {
 		items.add(APPLE_NAME);
 		items.add(APPLE_NAME);
 		Checkout checkout = new Checkout(items);
+		System.out.println(checkout.getTotal().toString());
+		System.out.println(TOTAL_TEST_ONE.toString());
 		assertTrue(checkout.getTotal().equals(TOTAL_TEST_ONE));
 	}
 	
@@ -91,22 +92,6 @@ public class TestCheckout {
 		items.add(ORANGE_NAME);
 		Checkout checkout = new Checkout(items);
 		assertTrue(checkout.getTotal().equals(TOTAL_TEST_TWO));
-	}
-	
-	@Test
-	public void testCaluclateTotalDiscounts() {
-		ArrayList<String> items = new ArrayList<String>();
-		items.add(APPLE_NAME);
-		items.add(APPLE_NAME);
-		items.add(APPLE_NAME);
-		items.add(APPLE_NAME);
-		items.add(APPLE_NAME);
-		items.add(APPLE_NAME);
-		items.add(ORANGE_NAME);
-		items.add(ORANGE_NAME);
-		items.add(ORANGE_NAME);
-		Checkout checkout = new Checkout(items);
-		assertTrue(checkout.getTotal().equals(TOTAL_TEST_THREE));
 	}
 	
 	/***
