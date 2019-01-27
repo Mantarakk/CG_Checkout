@@ -11,7 +11,6 @@ import java.util.Scanner;
  */
 public class Checkout {
 
-	private ArrayList<String> scannedItems;
 	private PriceFinder priceFinder;
 	private ItemFinder itemFinder;
 	private HashMap<Item, Integer> checkoutItems;
@@ -24,7 +23,6 @@ public class Checkout {
 	 * @param scannedItems An array list of item names.
 	 */
 	public Checkout(ArrayList<String> scannedItems) {
-		this.scannedItems = scannedItems;
 		this.priceFinder = PriceFinder.getInstance();
 		this.itemFinder = ItemFinder.getInstance();
 		this.checkoutItems = this.tallyItems(scannedItems);
